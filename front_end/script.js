@@ -90,6 +90,9 @@ function play() {
 
 // Go to previous track
 function prev() {
+    // Remember if we were playing
+    const wasPlaying = !audio.paused;
+    
     currentTrackIndex--;
     
     if (currentTrackIndex < 0) {
@@ -99,13 +102,16 @@ function prev() {
     loadTrack(currentTrackIndex);
     
     // If music was playing, continue playing
-    if (!audio.paused) {
+    if (wasPlaying) {
         audio.play();
     }
 }
 
 // Go to next track
 function next() {
+    // Remember if we were playing
+    const wasPlaying = !audio.paused;
+    
     currentTrackIndex++;
     
     if (currentTrackIndex >= playlist.length) {
@@ -115,7 +121,7 @@ function next() {
     loadTrack(currentTrackIndex);
     
     // If music was playing, continue playing
-    if (!audio.paused) {
+    if (wasPlaying) {
         audio.play();
     }
 }
